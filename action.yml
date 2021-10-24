@@ -1,0 +1,66 @@
+name: 'Python Versionator'
+description: 'Autoupdate the python package versions in your Github action matrix.'
+inputs:
+
+  action_path:
+    description: 'The path to the action file to update.'
+    required: true
+
+  github_token:
+    description: 'Github token used to push to the git repository.'
+    required: true
+
+  git_name:
+    description: 'The name to use as the author of the commit.'
+    required: true
+    default: ${{ github.repository_owner }}
+
+  git_email:
+    description: 'The email to use for the author of the commit.'
+    required: true
+    default: "python-versionator@tedivm.com"
+
+  package:
+    description: 'The python package whose version is being tracked.'
+    required: true
+
+  max_versions:
+    description: 'The maximum number of versions (from most current back) to inject into the action.'
+    required: true
+    default: '10'
+
+  update_python:
+    description: 'When enabled python versions will also be updated.'
+    required: true
+    default: 'true'
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Update Package Versions
+      shell: bash
+      run: "bash ${{ github.action_path }}/scripts/update_packages.sh \"${{ inputs.package }}\" \"{{ inputs.action_path }}\""
+      env:
+        MAX_VERSIONS: ${{ inputs.max_versions }}
+
+    - name: Update Python Versions
+      shell: bash
+      run: "[[ \"${{inputs.update_python}}\" == \"true\" ]] && sed -i 's/python_versions:.*/python_versions: [\"3.6\", \"3.7\", \"3.8\", \"3.9\", \"3.10\"] /' \"${{ inputs.action_path }}\""
+
+    - name: "Update Git User"
+      shell: bash
+      run: |
+        git config --local user.name "${ inputs.git_name }}"
+        git config --local user.email "${ inputs.git_email }}"
+
+    - name: Update Package Versions
+      shell: bash
+      run: |
+        git add "{{ inputs.action_path }}"
+        git commit -m "Versionator Updating versions for python and package."
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ inputs.github_token }}

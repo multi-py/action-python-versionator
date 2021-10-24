@@ -1,0 +1,19 @@
+
+name: Python Version Updates
+
+on: [push]
+
+jobs:
+  Build-The-Image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Create and push"
+        uses: multi-py/action-python-versionator@main
+        with:
+          package: "uvicorn"
+          git_name: "Robert Hafner"
+          git_email: "tedivm@tedivm.com"
+          action_path: ${{ env.GITHUB_WORKSPACE}}/.github/workflows/build.yml
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
