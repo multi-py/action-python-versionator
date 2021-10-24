@@ -3,8 +3,12 @@ import os
 
 SCRIPT_DIR=os.path.dirname(os.path.realpath(__file__))
 
+TEMPLATE_DIR = os.environ.get("TEMPLATE_DIRECTORY", False)
+if not TEMPLATE_DIR or len(TEMPLATE_DIR) < 1:
+  TEMPLATE_DIR = f"{SCRIPT_DIR}/templates/"
+
 env = Environment(
-    loader=FileSystemLoader(os.environ.get("TEMPLATE_DIRECTORY", f"{SCRIPT_DIR}/templates/")),
+    loader=FileSystemLoader(TEMPLATE_DIR),
     autoescape=select_autoescape()
 )
 

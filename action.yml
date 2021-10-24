@@ -23,7 +23,7 @@ inputs:
   template_directory:
     description: 'The path to the README template.'
     required: true
-    default: "${{ github.action_path }}/templates/"
+    default: ""
 
   repository:
     description: 'The repository, for updating the readme.'
