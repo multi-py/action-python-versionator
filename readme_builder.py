@@ -15,6 +15,7 @@ env = Environment(
 template = env.get_template("README.md")
 
 variables = {
+  "package": os.environ["PACKAGE"],
   "project_name": os.environ["PROJECT_NAME"],
   "description": os.environ["PROJECT_DESCRIPTION"],
   "package_versions": os.environ["PACKAGE_VERSIONS"].split(),
