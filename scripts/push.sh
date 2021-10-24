@@ -9,3 +9,4 @@ git config --local user.name "$GIT_USER"
 git config --local user.email "$GIT_EMAIL"
 git add "$ACTION_PATH"
 git commit -m "Versionator Updating versions for python and package."
+git push
