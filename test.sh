@@ -8,4 +8,4 @@ export ORGANIZATION="TestOrganization"
 export REPOSITORY="TestRepository"
 export PROJECT_DESCRIPTION="This project is a project."
 
-python readme_builder.py
+./scripts/update_readme.sh
