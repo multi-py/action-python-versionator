@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ git diff --quiet --exit-code "$ACTION_PATH" ]]; then
+if git diff --quiet --exit-code "$ACTION_PATH" ; then
   echo "No differences found."
   exit 0
 fi
