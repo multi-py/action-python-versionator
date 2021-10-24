@@ -78,12 +78,12 @@ runs:
 
     - name: "Update README.md"
       shell: bash
-      run: "bash ${{ github.action_path }}/scripts/update_readme.sh > ${{ inputs.readme_path }}"
+      run: "bash ${{ github.action_path }}/scripts/update_readme.sh \"${{ inputs.readme_path }}\""
       env:
         TEMPLATE_DIRECTORY: ${{ inputs.template_directory }}
+        PACKAGE: ${{ inputs.package }}
         PROJECT_NAME: ${{ inputs.package }}
         PROJECT_DESCRIPTION: ${{ inputs.project_description }}
-        PACKAGE_VERSIONS: ${{join(steps.package_versions.outputs.*, ' ')}}
         PYTHON_VERSIONS: "3.6 3.7 3.8 3.9 3.10"
         MAX_VERSIONS: ${{ inputs.max_versions }}
         ORGANIZATION: ${{ inputs.organization }}

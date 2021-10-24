@@ -3,7 +3,7 @@
 git config --local user.name "$GIT_USER"
 git config --local user.email "$GIT_EMAIL"
 
-HAS_UPDATES = false
+HAS_UPDATES=false
 if ! git diff --quiet --exit-code "$ACTION_PATH" ; then
   git add "$ACTION_PATH"
   HAS_UPDATES=true
