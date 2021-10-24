@@ -20,6 +20,10 @@ else
   FILE=$2
 fi
 
+echo "Package: $PACKAGE"
+echo "Action Path: $FILE"
+echo "Max Versions: $MAX_VERSIONS"
+
 VERSIONS=$($SCRIPT_DIR/latest_versions.sh $PACKAGE ${MAX_VERSIONS:-10})
 LATEST_VERSION=$($SCRIPT_DIR/latest_versions.sh $PACKAGE 1)
 
