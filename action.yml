@@ -55,6 +55,7 @@ inputs:
     required: true
     default: 'true'
 
+
 runs:
   using: "composite"
   steps:
@@ -82,7 +83,7 @@ runs:
 
     - name: "Update README.md"
       shell: bash
-      run: "python test.py > ${{ inputs.readme_path }}"
+      run: "python readme_builder.py > ${{ inputs.readme_path }}"
       env:
         TEMPLATE_DIRECTORY: ${{ inputs.template_directory }}
         PROJECT_NAME: ${{ inputs.package }}
