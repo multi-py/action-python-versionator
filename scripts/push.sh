@@ -3,21 +3,15 @@
 git config --local user.name "$GIT_USER"
 git config --local user.email "$GIT_EMAIL"
 
-HAS_UPDATES=false
-if ! git diff --quiet --exit-code "$ACTION_PATH" ; then
-  git add "$ACTION_PATH"
-  HAS_UPDATES=true
-fi
+git add "$ACTION_PATH"
+git add "$README_PATH"
 
-if ! git diff --quiet --exit-code "$README_PATH" ; then
-  git add "$README_PATH"
-  HAS_UPDATES=true
-fi
 
-if [[ "$HAS_UPDATES" != "true" ]]; then
+if [[ ! -z $(git status -s) ]]; then
+  git commit -m "Versionator Updating versions for python and package."
+  git push
+else
   echo "No updates to push."
-  exit 1
+  exit 0
 fi
 
-git commit -m "Versionator Updating versions for python and package."
-git push
