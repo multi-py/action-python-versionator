@@ -83,7 +83,7 @@ runs:
 
     - name: "Update README.md"
       shell: bash
-      run: "python readme_builder.py > ${{ inputs.readme_path }}"
+      run: "python ${{ github.action_path }}/readme_builder.py > ${{ inputs.readme_path }}"
       env:
         TEMPLATE_DIRECTORY: ${{ inputs.template_directory }}
         PROJECT_NAME: ${{ inputs.package }}
