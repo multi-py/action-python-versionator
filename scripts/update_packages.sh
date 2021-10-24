@@ -20,8 +20,12 @@ else
   FILE=$2
 fi
 
-VERSION_STRING=$($SCRIPT_DIR/latest_versions.sh $PACKAGE ${MAX_VERSIONS:-10} | $SCRIPT_DIR/versions_to_yaml.sh -)
+VERSIONS=$($SCRIPT_DIR/latest_versions.sh $PACKAGE ${MAX_VERSIONS:-10})
+LATEST_VERSION=$($SCRIPT_DIR/latest_versions.sh $PACKAGE 1)
+
+echo "Found versions: $VERSIONS"
+VERSION_STRING=$(echo $VERSIONS | $SCRIPT_DIR/versions_to_yaml.sh -)
 sed -i 's/package_versions:.*/package_versions: '"${VERSION_STRING}"'/' $FILE
 
-LATEST_VERSION_STRING=$($SCRIPT_DIR/latest_versions.sh $PACKAGE 1)
-sed -i 's/package_latest_version:.*/package_latest_version: \"'"${LATEST_VERSION_STRING}"'\"/' $FILE
+echo "Found latest version: $LATEST_VERSION"
+sed -i 's/package_latest_version:.*/package_latest_version: \"'"${LATEST_VERSION}"'\"/' $FILE
