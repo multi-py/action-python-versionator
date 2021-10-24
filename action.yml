@@ -40,7 +40,7 @@ runs:
 
     - name: Update Package Versions
       shell: bash
-      run: "bash ${{ github.action_path }}/scripts/update_packages.sh \"${{ inputs.package }}\" \"{{ inputs.action_path }}\""
+      run: "bash ${{ github.action_path }}/scripts/update_packages.sh \"${{ inputs.package }}\" \"${{ inputs.action_path }}\""
       env:
         MAX_VERSIONS: ${{ inputs.max_versions }}
 
@@ -57,7 +57,7 @@ runs:
     - name: Update Package Versions
       shell: bash
       run: |
-        git add "{{ inputs.action_path }}"
+        git add "${{ inputs.action_path }}"
         git commit -m "Versionator Updating versions for python and package."
 
     - name: Push changes
