@@ -5,9 +5,6 @@ export PACKAGE_VERSIONS=$($SCRIPT_DIR/latest_versions.sh $PACKAGE ${MAX_VERSIONS
 if [[ -z $1 ]]; then
   echo "Please provide a file path."
   exit 1
-elif [[ ! -f $1 ]]; then
-  echo "No file found at ${1}"
-  exit 1
 else
   FILE=$1
 fi
