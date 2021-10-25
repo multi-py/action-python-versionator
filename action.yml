@@ -10,11 +10,6 @@ inputs:
     description: 'The python package whose version is being tracked.'
     required: true
 
-  project_description:
-    description: "A description of the project- this can be a full markdown text."
-    required: true
-    default: ""
-
   readme_path:
     description: 'The path to the README file to update.'
     required: true
@@ -83,7 +78,6 @@ runs:
         TEMPLATE_DIRECTORY: ${{ inputs.template_directory }}
         PACKAGE: ${{ inputs.package }}
         PROJECT_NAME: ${{ inputs.package }}
-        PROJECT_DESCRIPTION: ${{ inputs.project_description }}
         PYTHON_VERSIONS: "3.6 3.7 3.8 3.9 3.10"
         MAX_VERSIONS: ${{ inputs.max_versions }}
         ORGANIZATION: ${{ inputs.organization }}
