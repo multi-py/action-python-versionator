@@ -64,22 +64,22 @@ Every tag in this repository supports these architectures:
 * linux/arm64
 * linux/arm/v7
 
+
 ## Tags
+
+* Recommended Image: `ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-{{ package_versions|last }}`
+* Slim Image: `ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-slim-{{ package_versions|last }}`
 
 Tags are based on the package version, python version, and the upstream container the container is based on.
 
-{% for package_version in ["latest"] + package_versions|reverse|list %}
-### {{ package }} {{ package_version }}
+| {{package}} Version | Python Version | Full Container | Slim Container | Alpine Container |
+|---------------------|----------------|----------------|----------------|------------------|
+{%- for package_version in ["latest"] + package_versions|reverse|list -%}
+{%- for python_version in python_versions|reverse %}
+| {{ package_version }} | {{ python_version }} | py{{ python_version }}-{{ package_version }} | py{{ python_version }}-slim-{{ package_version }} | py{{ python_version }}-alpine-{{ package_version }} |
+{%- endfor %}
+{%- endfor %}
 
-* Recommended Image: `ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-{{ package_version }}`
-* Slim Image: `ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-slim-{{ package_version }}`
-
-| Python Version | Full Container | Slim Container | Alpine Container |
-|----------------|----------------|----------------|------------------|
-{% for python_version in python_versions|reverse -%}
-| {{ python_version }} | py{{ python_version }}-{{ package_version }} | py{{ python_version }}-slim-{{ package_version }} | py{{ python_version }}-alpine-{{ package_version }} |
-{% endfor %}
-{% endfor %}
 
 ### Older Tags
 
