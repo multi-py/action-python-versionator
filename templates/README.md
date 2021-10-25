@@ -1,4 +1,5 @@
 # {{ project_name }}
+{% set short_repository = repository.split("/")[1] -%}
 
 {{ description }}
 
@@ -9,13 +10,13 @@
 To pull the latest slim version:
 
 ```bash
-docker pull ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-LATEST
+docker pull ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-LATEST
 ```
 
 To include it in the dockerfile instead:
 
 ```dockerfile
-FROM ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-LATEST
+FROM ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-LATEST
 ```
 
 ### Slim
@@ -23,13 +24,13 @@ FROM ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-L
 To pull the latest slim version:
 
 ```bash
-docker pull ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-slim-LATEST
+docker pull ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-slim-LATEST
 ```
 
 To include it in the dockerfile instead:
 
 ```dockerfile
-FROM ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-slim-LATEST
+FROM ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-slim-LATEST
 ```
 
 ## Python Versions
@@ -67,8 +68,8 @@ Every tag in this repository supports these architectures:
 
 ## Tags
 
-* Recommended Image: `ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-{{ package_versions|last }}`
-* Slim Image: `ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-slim-{{ package_versions|last }}`
+* Recommended Image: `ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-{{ package_versions|last }}`
+* Slim Image: `ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-slim-{{ package_versions|last }}`
 
 Tags are based on the package version, python version, and the upstream container the container is based on.
 
@@ -82,7 +83,5 @@ Tags are based on the package version, python version, and the upstream containe
 
 
 ### Older Tags
-
-{% set short_repository = repository.split("/")[1] -%}
 
 Older tags are left for historic purposes but do not receive updates. A full list of tags can be found on the package's [registry page](https://github.com/{{ repository }}/pkgs/container/{{ short_repository }}).
