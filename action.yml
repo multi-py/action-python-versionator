@@ -13,7 +13,7 @@ inputs:
   project_description:
     description: "A description of the project- this can be a full markdown text."
     required: true
-    default: "project_description"
+    default: ""
 
   readme_path:
     description: 'The path to the README file to update.'
