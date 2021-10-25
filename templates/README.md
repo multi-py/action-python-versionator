@@ -83,5 +83,6 @@ Tags are based on the package version, python version, and the upstream containe
 
 ### Older Tags
 
-Older tags are left for historic purposes but do not receive updates. A full list of tags can be found on the package's [registry page](https://github.com/{{ organization }}/{{ repository }}/pkgs/container/{{ repository }}).
+{% set short_repository = repository.split("/")[1] -%}
 
+Older tags are left for historic purposes but do not receive updates. A full list of tags can be found on the package's [registry page](https://github.com/{{ repository }}/pkgs/container/{{ short_repository }}).
