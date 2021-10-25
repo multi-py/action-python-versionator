@@ -4,7 +4,23 @@
 
 ## Quick Start
 
-To pull the latest version:
+### Full
+
+To pull the latest slim version:
+
+```bash
+docker pull ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-LATEST
+```
+
+To include it in the dockerfile instead:
+
+```dockerfile
+FROM ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-LATEST
+```
+
+### Slim
+
+To pull the latest slim version:
 
 ```bash
 docker pull ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-slim-LATEST
@@ -18,7 +34,11 @@ FROM ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-s
 
 ## Python Versions
 
-Each tag is built off using a variety of python versions.
+This project actively supports these Python versions:
+
+{% for version in python_versions|reverse -%}
+* {{ version }}
+{% endfor %}
 
 ## Image Variants
 
@@ -36,7 +56,7 @@ This container is similar to Full but with far less libraries and tools installe
 
 This container is provided for those who wish to use Alpine. Alpine works a bit differently than the other image types, as it uses `musl` instead of `glibc` and many libaries are not well tested under `musl` at this time.
 
-### Architectures
+## Architectures
 
 Every tag in this repository supports these architectures:
 
