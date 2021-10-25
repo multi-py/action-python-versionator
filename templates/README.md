@@ -81,3 +81,7 @@ Tags are based on the package version, python version, and the upstream containe
 {% endfor %}
 {% endfor %}
 
+### Older Tags
+
+Older tags are left for historic purposes but do not receive updates. A full list of tags can be found on the package's [registry page](https://github.com/{{ organization }}/{{ repository }}/pkgs/container/{{ repository }}).
+
