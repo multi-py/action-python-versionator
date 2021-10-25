@@ -1,19 +1,29 @@
 
-name: Python Version Updates
+name: Uvicorn Version Updater
 
-on: [push]
+# Every 30 minutes check for a new version of the package.
+on:
+  push:
+    branches:
+      - 'main'
+  schedule:
+    - cron:  '0,30 * * * *'
 
 jobs:
-  Build-The-Image:
+  Version-Updater:
     runs-on: ubuntu-latest
-
     steps:
-      - name: "Create and push"
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          # Github Actions can't be granted the required workflow
+          # permissions, so it has to be a Personal Access Token.
+          token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
+
+      - name: "Update Build Workflow"
         uses: multi-py/action-python-versionator@main
         with:
           package: "uvicorn"
           git_name: "Robert Hafner"
-          git_email: "tedivm@tedivm.com"
-          action_path: ${{ env.GITHUB_WORKSPACE}}/.github/workflows/build.yml
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
+          git_email: "user@example.com"
+          action_path: ${{ github.workspace }}/.github/workflows/build_and_push.yml
