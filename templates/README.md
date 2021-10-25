@@ -71,6 +71,9 @@ Tags are based on the package version, python version, and the upstream containe
 {% for package_version in ["latest"] + package_versions|reverse|list %}
 ### {{ package }} {{ package_version }}
 
+* Recommended Image: `ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-{{ package_version }}`
+* Slim Image: `ghcr.io/{{ organization  }}/{{ repository }}:py{{ python_versions|last }}-slim-{{ package_version }}`
+
 | Python Version | Full Container | Slim Container | Alpine Container |
 |----------------|----------------|----------------|------------------|
 {% for python_version in python_versions|reverse -%}
