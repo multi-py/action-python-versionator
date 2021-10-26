@@ -21,7 +21,7 @@ else:
   if WORKSPACE_DIR:
     workspace_template_path = Path(WORKSPACE_DIR, 'templates')
     if workspace_template_path.exists():
-      template_paths.append(str(FileSystemLoader(workspace_template_path)))
+      template_paths.append(FileSystemLoader(str(workspace_template_path)))
 
 # Add the action templates as the final templates to check.
 SCRIPT_DIR=os.path.dirname(os.path.realpath(__file__))
