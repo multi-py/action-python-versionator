@@ -1,4 +1,5 @@
 ## Tags
+{% set short_repository = repository.split("/")[1] -%}
 
 * Recommended Image: `ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-{{ package_versions|last }}`
 * Slim Image: `ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-slim-{{ package_versions|last }}`

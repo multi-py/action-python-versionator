@@ -1,4 +1,5 @@
 ## Quick Start
+{% set short_repository = repository.split("/")[1] -%}
 
 ### Full
 
