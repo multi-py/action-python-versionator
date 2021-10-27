@@ -45,6 +45,11 @@ inputs:
     required: true
     default: '10'
 
+  include_prereleases:
+    description: 'If set to true prereleases (alpha, beta, rc) will also be built.'
+    required: true
+    default: "false"
+
   update_python:
     description: 'When enabled python versions will also be updated.'
     required: true
@@ -60,6 +65,7 @@ runs:
       run: "bash ${{ github.action_path }}/scripts/update_packages.sh \"${{ inputs.package }}\" \"${{ inputs.action_path }}\""
       env:
         MAX_VERSIONS: ${{ inputs.max_versions }}
+        INCLUDE_PRERELEASE: ${{ inputs:include_prereleases}}
 
     - name: Update Python Versions
       shell: bash
@@ -82,6 +88,7 @@ runs:
         MAX_VERSIONS: ${{ inputs.max_versions }}
         ORGANIZATION: ${{ inputs.organization }}
         REPOSITORY: ${{ inputs.repository }}
+        INCLUDE_PRERELEASE: ${{ inputs:include_prereleases}}
 
     - name: "Push"
       shell: bash
