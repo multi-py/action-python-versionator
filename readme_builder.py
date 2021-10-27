@@ -35,15 +35,23 @@ env = Environment(
 
 
 def get_key_value(obj, key):
-    if hasattr(obj,'iteritems'):
-        for k, v in obj.iteritems():
-            if k == key:
-                return v
-            if isinstance(v, dict):
-              return get_key_value(v, key)
-            elif isinstance(v, list):
-                for d in v:
-                    return get_key_value(d, key)
+  if isinstance(obj, dict):
+    if key in obj:
+      return obj[key]
+
+    for k, v in obj.items():
+      test_value = get_key_value(v, key)
+      if test_value:
+        return test_value
+
+  if isinstance(obj, list):
+    for v in obj:
+      test_value = get_key_value(v, key)
+      if test_value:
+        return test_value
+
+
+os.environ["BUILDER_WORKFLOW_PATH"] = "/Users/rob/Repository/multi-py/python-oso/.github/workflows/image-build.yml"
 
 platform = "linux/amd64,linux/arm64,linux/arm/v7"
 variants = ["full", "slim", "alpine"]
