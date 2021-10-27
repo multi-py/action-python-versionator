@@ -88,7 +88,7 @@ runs:
         MAX_VERSIONS: ${{ inputs.max_versions }}
         ORGANIZATION: ${{ inputs.organization }}
         REPOSITORY: ${{ inputs.repository }}
-        INCLUDE_PRERELEASE: ${{ inputs:include_prereleases}}
+        INCLUDE_PRERELEASE: ${{ inputs.include_prereleases }}
         BUILDER_WORKFLOW_PATH: ${{ inputs.action_path }}
 
     - name: "Push"
