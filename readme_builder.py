@@ -51,7 +51,9 @@ if os.environ.get('BUILDER_WORKFLOW_PATH', False):
   with open(os.environ['BUILDER_WORKFLOW_PATH'], "r") as stream:
       try:
           build_spec = yaml.safe_load(stream)
-          platform = get_key_value(build_spec, "platform")
+          platform_guess = get_key_value(build_spec, "platform")
+          if platform_guess:
+            platform = platform_guess
           strategy = get_key_value(build_spec, "strategy")
           if strategy and 'matrix' in strategy:
             if 'target_base' in strategy['matrix']:
