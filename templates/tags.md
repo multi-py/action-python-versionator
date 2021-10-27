@@ -6,11 +6,11 @@
 
 Tags are based on the package version, python version, and the upstream container the container is based on.
 
-| {{ package }} Version | Python Version | Full Container | Slim Container | Alpine Container |
-|-----------------------|----------------|----------------|----------------|------------------|
+| {{ package }} Version | Python Version | Full Container | Slim Container |{{ ' Alpine Container |' if "alpine" in variants }}
+|-----------------------|----------------|----------------|----------------|{{ '------------------|' if "alpine" in variants }}
 {%- for package_version in ["latest"] + package_versions|reverse|list -%}
 {%- for python_version in python_versions|reverse %}
-| {{ package_version }} | {{ python_version }} | py{{ python_version }}-{{ package_version }} | py{{ python_version }}-slim-{{ package_version }} | py{{ python_version }}-alpine-{{ package_version }} |
+| {{ package_version }} | {{ python_version }} | py{{ python_version }}-{{ package_version }} | py{{ python_version }}-slim-{{ package_version }} |{{ " py"+ python_version +"-alpine-"+ package_version +" |" if "alpine" in variants }}
 {%- endfor %}
 {%- endfor %}
 

@@ -75,7 +75,7 @@ runs:
 
     - name: "Install Jinja2"
       shell: bash
-      run: "python -m pip install jinja2"
+      run: "python -m pip install jinja2 pyyaml"
 
     - name: "Update README.md"
       shell: bash
@@ -89,6 +89,7 @@ runs:
         ORGANIZATION: ${{ inputs.organization }}
         REPOSITORY: ${{ inputs.repository }}
         INCLUDE_PRERELEASE: ${{ inputs:include_prereleases}}
+        BUILDER_WORKFLOW_PATH: ${{ inputs.action_path }}
 
     - name: "Push"
       shell: bash

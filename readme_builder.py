@@ -1,4 +1,5 @@
 from jinja2 import Environment, FileSystemLoader, ChoiceLoader, select_autoescape
+import yaml
 import os
 from pathlib import Path
 
@@ -32,13 +33,41 @@ env = Environment(
     autoescape=select_autoescape()
 )
 
+
+def get_key_value(obj, key):
+    if hasattr(obj,'iteritems'):
+        for k, v in obj.iteritems():
+            if k == key:
+                return v
+            if isinstance(v, dict):
+              return get_key_value(v, key)
+            elif isinstance(v, list):
+                for d in v:
+                    return get_key_value(d, key)
+
+platform = "linux/amd64,linux/arm64,linux/arm/v7"
+variants = ["full", "slim", "alpine"]
+if os.environ.get('BUILDER_WORKFLOW_PATH', False):
+  with open(os.environ['BUILDER_WORKFLOW_PATH'], "r") as stream:
+      try:
+          build_spec = yaml.safe_load(stream)
+          platform = get_key_value(build_spec, "platform")
+          strategy = get_key_value(build_spec, "strategy")
+          if strategy and 'matrix' in strategy:
+            if 'target_base' in strategy['matrix']:
+              variants = strategy['matrix']['target_base']
+      except yaml.YAMLError as exc:
+          print(exc)
+
 variables = {
   "package": os.environ["PACKAGE"],
   "project_name": os.environ["PROJECT_NAME"],
   "package_versions": os.environ["PACKAGE_VERSIONS"].split(),
   "python_versions": os.environ["PYTHON_VERSIONS"].split(),
   "organization": os.environ["ORGANIZATION"],
-  "repository": os.environ["REPOSITORY"]
+  "repository": os.environ["REPOSITORY"],
+  "platforms": platform.split(','),
+  "variants": variants
 }
 
 for template_var in subtemplates:
