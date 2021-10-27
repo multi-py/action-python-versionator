@@ -65,7 +65,7 @@ runs:
       run: "bash ${{ github.action_path }}/scripts/update_packages.sh \"${{ inputs.package }}\" \"${{ inputs.action_path }}\""
       env:
         MAX_VERSIONS: ${{ inputs.max_versions }}
-        INCLUDE_PRERELEASE: ${{ inputs:include_prereleases}}
+        INCLUDE_PRERELEASE: ${{ inputs.include_prereleases }}
 
     - name: Update Python Versions
       shell: bash
