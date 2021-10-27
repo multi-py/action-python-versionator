@@ -51,8 +51,6 @@ def get_key_value(obj, key):
         return test_value
 
 
-os.environ["BUILDER_WORKFLOW_PATH"] = "/Users/rob/Repository/multi-py/python-oso/.github/workflows/image-build.yml"
-
 platform = "linux/amd64,linux/arm64,linux/arm/v7"
 variants = ["full", "slim", "alpine"]
 if os.environ.get('BUILDER_WORKFLOW_PATH', False):
