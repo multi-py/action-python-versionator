@@ -45,6 +45,11 @@ inputs:
     required: true
     default: '10'
 
+  exclude_versions:
+    description: 'A comma separated list of versions to exclude.'
+    required: true
+    default: ''
+
   include_prereleases:
     description: 'If set to true prereleases (alpha, beta, rc) will also be built.'
     required: true
@@ -68,6 +73,7 @@ runs:
       env:
         MAX_VERSIONS: ${{ inputs.max_versions }}
         INCLUDE_PRERELEASE: ${{ inputs.include_prereleases }}
+        EXCLUDE_VERSIONS: ${{ inputs.exclude_versions }}
 
     - name: Update Python Versions
       shell: bash
@@ -90,6 +96,7 @@ runs:
         REPOSITORY: ${{ inputs.repository }}
         INCLUDE_PRERELEASE: ${{ inputs.include_prereleases }}
         BUILDER_WORKFLOW_PATH: ${{ inputs.action_path }}
+        EXCLUDE_VERSIONS: ${{ inputs.exclude_versions }}
 
     - name: "Push"
       shell: bash
