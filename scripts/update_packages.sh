@@ -24,8 +24,8 @@ echo "Package: $PACKAGE"
 echo "Action Path: $FILE"
 echo "Max Versions: $MAX_VERSIONS"
 
-VERSIONS=$($SCRIPT_DIR/latest_versions.sh $PACKAGE ${MAX_VERSIONS:-10})
-LATEST_VERSION=$($SCRIPT_DIR/latest_versions.sh $PACKAGE 1)
+VERSIONS=$($SCRIPT_DIR/latest_versions.py $PACKAGE ${MAX_VERSIONS:-10})
+LATEST_VERSION=$($SCRIPT_DIR/latest_versions.py $PACKAGE 1)
 
 echo "Found versions: $VERSIONS"
 VERSION_STRING=$(echo $VERSIONS | $SCRIPT_DIR/versions_to_yaml.sh -)

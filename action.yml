@@ -60,6 +60,8 @@ runs:
   using: "composite"
   steps:
 
+    - uses: "actions/setup-python@v2"
+
     - name: Update Package Versions
       shell: bash
       run: "bash ${{ github.action_path }}/scripts/update_packages.sh \"${{ inputs.package }}\" \"${{ inputs.action_path }}\""
@@ -70,8 +72,6 @@ runs:
     - name: Update Python Versions
       shell: bash
       run: "[[ \"${{inputs.update_python}}\" == \"true\" ]] && sed -i 's/python_versions:.*/python_versions: [\"3.6\", \"3.7\", \"3.8\", \"3.9\", \"3.10\"] /' \"${{ inputs.action_path }}\""
-
-    - uses: "actions/setup-python@v2"
 
     - name: "Install Jinja2"
       shell: bash

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-export PACKAGE_VERSIONS=$($SCRIPT_DIR/latest_versions.sh $PACKAGE ${MAX_VERSIONS:-10})
+export PACKAGE_VERSIONS=$($SCRIPT_DIR/latest_versions.py $PACKAGE ${MAX_VERSIONS:-10})
 
 if [[ -z $1 ]]; then
   echo "Please provide a file path."
