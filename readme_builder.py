@@ -7,6 +7,8 @@ subtemplates = [
   "description",
   "documentation",
   "quick_start",
+  "pull_containers",
+  "copy_packages",
   "tags",
   "funding"
 ]

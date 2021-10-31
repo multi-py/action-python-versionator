@@ -29,6 +29,12 @@ Within 30 minutes of a new release to {{ package }} on PyPI builds will kick off
 
 Containers are rebuilt weekly in order to take on the security patches from upstream containers.
 
+## How To
+
+{{ pull_containers }}
+
+{{ copy_packages }}
+
 {{ quick_start }}
 
 ## Python Versions
