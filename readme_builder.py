@@ -7,7 +7,8 @@ subtemplates = [
   "description",
   "documentation",
   "quick_start",
-  "tags"
+  "tags",
+  "funding"
 ]
 
 template_paths = []

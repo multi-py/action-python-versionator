@@ -70,6 +70,7 @@ Every tag in this repository supports these architectures:
 * {{ platform }}
 {% endfor %}
 
+{{ funding }}
 
 {{ tags }}
 
