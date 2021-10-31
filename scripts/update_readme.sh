@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+if [[ $SKIP_README == "true" ]]; then
+  echo "Generation of README.md is disabled."
+  exit 0
+fi
+
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 export PACKAGE_VERSIONS=$($SCRIPT_DIR/latest_versions.py $PACKAGE ${MAX_VERSIONS:-10})
 

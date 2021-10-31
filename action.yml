@@ -50,6 +50,11 @@ inputs:
     required: true
     default: ''
 
+  skip_readme:
+    description: 'When set to true the readme fill will not be generated.'
+    required: true
+    default: 'false'
+
   include_prereleases:
     description: 'If set to true prereleases (alpha, beta, rc) will also be built.'
     required: true
@@ -97,6 +102,7 @@ runs:
         INCLUDE_PRERELEASE: ${{ inputs.include_prereleases }}
         BUILDER_WORKFLOW_PATH: ${{ inputs.action_path }}
         EXCLUDE_VERSIONS: ${{ inputs.exclude_versions }}
+        SKIP_README:  ${{ inputs.skip_readme }}
 
     - name: "Push"
       shell: bash
