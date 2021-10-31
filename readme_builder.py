@@ -75,6 +75,7 @@ variables = {
   "python_versions": os.environ["PYTHON_VERSIONS"].split(),
   "organization": os.environ["ORGANIZATION"],
   "repository": os.environ["REPOSITORY"],
+  "repository_short": os.environ["REPOSITORY_SHORT"],
   "platforms": platform.split(','),
   "variants": variants
 }

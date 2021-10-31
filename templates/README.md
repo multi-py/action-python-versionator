@@ -1,4 +1,4 @@
-# {{ project_name }}
+# {{ repository_short }}
 {% set short_repository = repository.split("/")[1] -%}
 
 {{ description }}

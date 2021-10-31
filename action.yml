@@ -99,6 +99,7 @@ runs:
         MAX_VERSIONS: ${{ inputs.max_versions }}
         ORGANIZATION: ${{ inputs.organization }}
         REPOSITORY: ${{ inputs.repository }}
+        REPOSITORY_SHORT: ${{ github.event.repository.name }}
         INCLUDE_PRERELEASE: ${{ inputs.include_prereleases }}
         BUILDER_WORKFLOW_PATH: ${{ inputs.action_path }}
         EXCLUDE_VERSIONS: ${{ inputs.exclude_versions }}
