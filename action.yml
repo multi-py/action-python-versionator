@@ -43,7 +43,7 @@ inputs:
   max_versions:
     description: 'The maximum number of versions (from most current back) to inject into the action.'
     required: true
-    default: '10'
+    default: '5'
 
   exclude_versions:
     description: 'A comma separated list of versions to exclude.'
