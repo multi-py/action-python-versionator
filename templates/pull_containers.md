@@ -1,7 +1,7 @@
 ### Full
 {% set short_repository = repository.split("/")[1] -%}
 
-To pull the latest slim version:
+To pull the latest full version:
 
 ```bash
 docker pull ghcr.io/{{ organization  }}/{{ short_repository }}:py{{ python_versions|last }}-LATEST
