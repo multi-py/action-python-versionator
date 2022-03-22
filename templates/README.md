@@ -1,8 +1,10 @@
 {% set short_repository = repository.split("/")[1] -%}
 # {{ short_repository }}
 
-
 {{ description }}
+
+<!--ts-->
+<!--te-->
 
 ## Benefits
 
@@ -37,6 +39,8 @@ Containers are rebuilt weekly in order to take on the security patches from upst
 {{ copy_packages }}
 
 {{ quick_start }}
+
+{{ documentation }}
 
 ## Python Versions
 
@@ -81,4 +85,3 @@ Every tag in this repository supports these architectures:
 
 {{ tags }}
 
-{{ documentation }}
