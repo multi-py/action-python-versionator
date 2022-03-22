@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 if [[ $SKIP_README == "true" ]]; then
   echo "Generation of README.md is disabled."
   exit 0
@@ -19,3 +21,8 @@ else
 fi
 
 python $SCRIPT_DIR/../readme_builder.py > $1
+
+# If TOC tag is in the readme generate and add the TOC.
+if grep -q "<\!\-\-ts\-\->" "$1"; then
+  $SCRIPT_DIR/gh-md-toc --insert --no-backup --hide-footer $1
+fi
