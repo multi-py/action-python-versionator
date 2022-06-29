@@ -18,7 +18,7 @@ if os.environ.get("INCLUDE_PRERELEASE", False) == "true":
     version_regex = re.compile(r"-(\d+\.\d+\.\d+(a|b|rc)?\d?).+[\.whl|\.tar\.gz]")
     versions = [x[0] for x in version_regex.findall(html_string) if x[0] not in EXCLUDE_VERSIONS]
 else:
-    version_regex = re.compile(r"-(\d+\.\d+\.\d+)\..+[\.whl|\.tar\.gz]")
+    version_regex = re.compile(r"-(\d+\.\d+\.\d+)[\.|-].+[\.whl|\.tar\.gz]")
     versions = [x for x in version_regex.findall(html_string) if x not in EXCLUDE_VERSIONS]
 
 unique_versions = list(dict.fromkeys(versions))
