@@ -82,7 +82,7 @@ runs:
 
     - name: Update Python Versions
       shell: bash
-      run: "[[ \"${{inputs.update_python}}\" == \"true\" ]] && sed -i 's/python_versions:.*/python_versions: [\"3.7\", \"3.8\", \"3.9\", \"3.10\", \"3.11\"] /' \"${{ inputs.action_path }}\""
+      run: "[[ \"${{inputs.update_python}}\" == \"true\" ]] && sed -i 's/python_versions:.*/python_versions: [\"3.8\", \"3.9\", \"3.10\", \"3.11\"] /' \"${{ inputs.action_path }}\""
 
     - name: "Install Jinja2"
       shell: bash
