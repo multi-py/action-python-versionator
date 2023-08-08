@@ -70,7 +70,7 @@ runs:
   using: "composite"
   steps:
 
-    - uses: "actions/setup-python@v2"
+    - uses: "actions/setup-python@v4"
 
     - name: Update Package Versions
       shell: bash
@@ -82,7 +82,10 @@ runs:
 
     - name: Update Python Versions
       shell: bash
-      run: "[[ \"${{inputs.update_python}}\" == \"true\" ]] && sed -i 's/python_versions:.*/python_versions: [\"3.8\", \"3.9\", \"3.10\", \"3.11\"] /' \"${{ inputs.action_path }}\""
+      run: |
+        if [ "${{inputs.update_python}}" == "true" ]; \
+        then sed -i 's/python_versions:.*/python_versions: [3.8, 3.9, 3.10, 3.11] /' "${{ inputs.action_path }}"; \
+        else echo "Skipping python version update"; fi
 
     - name: "Install Jinja2"
       shell: bash
