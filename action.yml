@@ -84,7 +84,7 @@ runs:
       shell: bash
       run: |
         if [ "${{inputs.update_python}}" == "true" ]; \
-        then sed -i 's/python_versions:.*/python_versions: [3.8, 3.9, 3.10, 3.11] /' "${{ inputs.action_path }}"; \
+        then sed -i 's/python_versions:.*/python_versions: [\"3.8\", \"3.9\", \"3.10\", \"3.11\"] /' "${{ inputs.action_path }}"; \
         else echo "Skipping python version update"; fi
 
     - name: "Install Jinja2"
