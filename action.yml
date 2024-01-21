@@ -70,7 +70,7 @@ runs:
   using: "composite"
   steps:
 
-    - uses: "actions/setup-python@v4"
+    - uses: "actions/setup-python@v5"
 
     - name: Update Package Versions
       shell: bash
@@ -84,7 +84,7 @@ runs:
       shell: bash
       run: |
         if [ "${{inputs.update_python}}" == "true" ]; \
-        then sed -i 's/python_versions:.*/python_versions: [\"3.8\", \"3.9\", \"3.10\", \"3.11\"] /' "${{ inputs.action_path }}"; \
+        then sed -i 's/python_versions:.*/python_versions: [\"3.8\", \"3.9\", \"3.10\", \"3.11\", \"3.12\"] /' "${{ inputs.action_path }}"; \
         else echo "Skipping python version update"; fi
 
     - name: "Install Jinja2"
@@ -104,7 +104,7 @@ runs:
         TEMPLATE_DIRECTORY: ${{ inputs.template_directory }}
         PACKAGE: ${{ inputs.package }}
         PROJECT_NAME: ${{ inputs.package }}
-        PYTHON_VERSIONS: "3.7 3.8 3.9 3.10 3.11"
+        PYTHON_VERSIONS: "3.8 3.9 3.10 3.11 3.12"
         MAX_VERSIONS: ${{ inputs.max_versions }}
         ORGANIZATION: ${{ inputs.organization }}
         REPOSITORY: ${{ inputs.repository }}
